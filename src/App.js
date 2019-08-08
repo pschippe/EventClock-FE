@@ -16,7 +16,7 @@ class App extends React.Component {
     ],
     indvTimer: 0,
     allTimers: 0,
-    currentTime: 0
+    currentTime: 0,
   };
 
   setTimer = timeObj => {
@@ -39,19 +39,19 @@ class App extends React.Component {
   };
 
   render() {
-    const rmClocks = this.state.timers.map((timer, index) => {
+    const rmClocks = this.state.timers.map((timers, index) => {
       return (
-        <Countdown id={timer.id} time={timer.time} key={index} index={index} />
+        <Countdown id={timers.id} time={timers.time} key={index} index={index} />
       );
     });
     return (
       <div className="App">
+        <div className="Timers">{rmClocks}</div>
         <div className="App-title">
           <TimerInput setTimer={this.setTimer} startAll={this.startAll} />
           <p>{this.state.indvTimer}</p>
           <p>{this.state.allTimers}</p>
         </div>
-        <div className="Timers">{rmClocks}</div>
       </div>
     );
   }
