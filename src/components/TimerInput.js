@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import mapReduxStoreToProps from '../redux/mapReduxStoreToProps';
 
 class TimerInput extends Component {
   state = {
@@ -45,4 +47,4 @@ class TimerInput extends Component {
   }
 }
 
-export default TimerInput;
+export default connect(mapReduxStoreToProps)(TimerInput);

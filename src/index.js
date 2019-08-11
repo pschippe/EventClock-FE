@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import App from "./App";
 import "./styles.scss";
-
-
+import store from './redux/store';
 
 // ========================================
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<Provider store={store}><App /></Provider>, document.getElementById("root"));

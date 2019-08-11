@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import mapReduxStoreToProps from '../redux/mapReduxStoreToProps';
 
 class Countdown extends Component {
   state = {
@@ -116,4 +118,4 @@ class Countdown extends Component {
   }
 }
 
-export default Countdown;
+export default connect(mapReduxStoreToProps)(Countdown);

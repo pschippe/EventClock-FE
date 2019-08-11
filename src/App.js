@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Countdown from "./components/Countdown";
 import TimerInput from "./components/TimerInput";
+import { connect } from 'react-redux';
+import mapReduxStoreToProps from './redux/mapReduxStoreToProps';
 
 class App extends React.Component {
   state = {
@@ -47,7 +49,10 @@ class App extends React.Component {
   }
 
   render() {
-    const rmClocks = this.state.timers.map((timers, index) => {
+    const {
+      store,
+    } = this.props;
+    const rmClocks = store.countdownTimers.map((timers, index) => {
       return (
         <Countdown
           id={timers.id}
@@ -72,4 +77,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(mapReduxStoreToProps)(App);
