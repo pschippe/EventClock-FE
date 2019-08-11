@@ -8,14 +8,17 @@ const defaultCurrentTime = {
 const currentTime = (state = defaultCurrentTime, action) => {
     switch (action.type) {
         case 'CURRENT_TIME_HOURS':
-            const newState = addTimeToState(state, 'hours', action.payload);
-            return newState;
+            const newStateHrs = addTimeToState(state, 'hours', action.payload);
+            console.log(newStateHrs);
+            return newStateHrs;
         case 'CURRENT_TIME_MINUTES':
-            const newState = addTimeToState(state, 'minutes', action.payload);
-            return newState;
+            const newStateMin = addTimeToState(state, 'minutes', action.payload);
+            console.log(newStateMin);
+            return newStateMin;
         case 'CURRENT_TIME_SECONDS':
-            const newState = addTimeToState(state, 'seconds', action.payload);
-            return newState;
+            const newStateSec = addTimeToState(state, 'seconds', action.payload);
+            console.log(newStateSec);
+            return newStateSec;
         default:
             return state;
     }
@@ -29,7 +32,7 @@ function addTimeToState(currState, timeKey, timeValue) {
     };
     newTimeState[timeKey] = timeDoubleDigit;
     newTimeState.timerTime = timeConverter(currState.timerTime, timeAsNumber, timeKey);
-
+    return newTimeState;
 }
 
 function makeTimeDoubleDigit(timeStr) {
@@ -42,8 +45,9 @@ function makeTimeDoubleDigit(timeStr) {
     return doubleDigit;
 }
 
+//TODO: Can remove baseTime from function
 function timeConverter(baseTime, newTime, timeType) {
-    let finalTime = baseTime;
+    let finalTime = 0;
     let conversion = 1;
 
     if (timeType === 'hours') {

@@ -13,11 +13,11 @@ class TimerInput extends Component {
     const newState = this.state;
     newState[timeKey] = parseInt(event.target.value);
     this.setState(newState);
-    this.props.setTimer(newState);
-  };
 
-  startMaster = () => {
-    this.props.startAll(this.state);
+    this.props.dispatch({
+      type: `CURRENT_TIME_${timeKey.toUpperCase()}`,
+      payload: event.target.value,
+    })
   };
 
   render() {
@@ -25,23 +25,22 @@ class TimerInput extends Component {
       <div>
         <input
           type="number"
-          onChange={event => this.changeInputTime(event, "inputHrs")}
+          onChange={event => this.changeInputTime(event, "hours")}
           className="field-item_hrs"
           required
         />
         <input
           type="number"
-          onChange={event => this.changeInputTime(event, "inputMin")}
+          onChange={event => this.changeInputTime(event, "minutes")}
           className="field-item_min"
           required
         />
         <input
           type="number"
-          onChange={event => this.changeInputTime(event, "inputSec")}
+          onChange={event => this.changeInputTime(event, "seconds")}
           className="field-item_sec"
           required
         />
-        <button onClick={this.startMaster}>Start Master</button>
       </div>
     );
   }

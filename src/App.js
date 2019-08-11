@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Countdown from "./components/Countdown";
+import MasterCountdown from "./components/MasterCountdown";
 import TimerInput from "./components/TimerInput";
 import { connect } from 'react-redux';
 import mapReduxStoreToProps from './redux/mapReduxStoreToProps';
@@ -22,12 +23,12 @@ class App extends React.Component {
     masterStart: false
   };
 
-  setTimer = timeObj => {
-    this.setState({
-      indvTimer: `${timeObj.inputHrs}:${timeObj.inputMin}:${timeObj.inputSec}`,
-      currentTime: timeObj
-    });
-  };
+  // setTimer = timeObj => {
+  //   this.setState({
+  //     indvTimer: `${timeObj.inputHrs}:${timeObj.inputMin}:${timeObj.inputSec}`,
+  //     currentTime: timeObj
+  //   });
+  // };
 
   startAll = timeObj => {
     this.setState({
@@ -56,7 +57,6 @@ class App extends React.Component {
       return (
         <Countdown
           id={timers.id}
-          time={this.state.currentTime}
           masterStart={this.state.masterStart}
           resetMasterCallback={this.resetMaster}
           key={index}
@@ -68,9 +68,10 @@ class App extends React.Component {
       <div className="App">
         <div className="Timers">{rmClocks}</div>
         <div className="App-title">
-          <TimerInput setTimer={this.setTimer} startAll={this.startAll} />
-          <p>{this.state.indvTimer}</p>
-          <p>{this.state.allTimers}</p>
+          <TimerInput
+            startAll={this.startAll}
+          />
+          <MasterCountdown />
         </div>
       </div>
     );
