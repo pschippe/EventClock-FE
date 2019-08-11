@@ -1,10 +1,10 @@
 const defaultCounntdowns = [
     {
-        id: "damnit",
+        id: 'room01',
         time: 0
     },
     {
-        id: "damnit2",
+        id: 'room02',
         time: 0
     }
 ];
