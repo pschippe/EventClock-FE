@@ -9,6 +9,13 @@ const defaultCounntdowns = [
     }
 ];
 
+// const action = {
+//      type: 'ADD_TIMER',
+//      payload: {
+//         id: 'room03',
+//         time: 0
+//      }
+// }
 const countdownTimers = (state = defaultCounntdowns, action) => {
     switch (action.type) {
         case 'ADD_TIMER':

@@ -6,16 +6,16 @@ import mapReduxStoreToProps from './redux/mapReduxStoreToProps';
 
 class App extends React.Component {
   state = {
-    timers: [
-      {
-        id: "damnit",
-        time: 0
-      },
-      {
-        id: "damnit2",
-        time: 0
-      }
-    ],
+    // timers: [
+    //   {
+    //     id: "damnit",
+    //     time: 0
+    //   },
+    //   {
+    //     id: "damnit2",
+    //     time: 0
+    //   }
+    // ],
     indvTimer: 0,
     allTimers: 0,
     currentTime: 0,
