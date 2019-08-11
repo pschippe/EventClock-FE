@@ -17,6 +17,7 @@ class App extends React.Component {
     indvTimer: 0,
     allTimers: 0,
     currentTime: 0,
+    masterStart: false
   };
 
   setTimer = timeObj => {
@@ -28,7 +29,8 @@ class App extends React.Component {
 
   startAll = timeObj => {
     this.setState({
-      allTimers: `${timeObj.inputHrs}:${timeObj.inputMin}:${timeObj.inputSec}`
+      allTimers: `${timeObj.inputHrs}:${timeObj.inputMin}:${timeObj.inputSec}`,
+      masterStart: true
     });
   };
 
@@ -38,10 +40,23 @@ class App extends React.Component {
     this.setState({ timers: timersArray });
   };
 
+  resetMaster = () => {
+    this.setState({
+      masterStart: false
+    })
+  }
+
   render() {
     const rmClocks = this.state.timers.map((timers, index) => {
       return (
-        <Countdown id={timers.id} time={timers.time} key={index} index={index} />
+        <Countdown
+          id={timers.id}
+          time={this.state.currentTime}
+          masterStart={this.state.masterStart}
+          resetMasterCallback={this.resetMaster}
+          key={index}
+          index={index} 
+        />
       );
     });
     return (

@@ -9,7 +9,7 @@ class TimerInput extends Component {
 
   changeInputTime = (event, timeKey) => {
     const newState = this.state;
-    newState[timeKey] = event.target.value;
+    newState[timeKey] = parseInt(event.target.value);
     this.setState(newState);
     this.props.setTimer(newState);
   };

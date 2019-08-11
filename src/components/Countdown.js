@@ -7,15 +7,45 @@ class Countdown extends Component {
     timerTime: 0,
     inputHrs: 0,
     inputMin: 0,
-    inputSec: 0
+    inputSec: 0,
+    pulledTime: {}
   };
+
+  preStart = () => {
+    this.setState({
+      pulledTime: this.props.time,
+      timerTime: this.convertTime(this.props.time)
+    }, () => {
+      window.setTimeout(() => {this.startTimer()}, 2000);
+      console.log(this.state.timerTime);
+    })
+    console.log(this.props.time);
+  }
+
+  convertTime(timeObj) {
+    let finalTime = 0;
+    if (timeObj.inputHrs > 0) {
+      const hoursToMills = 1000 * 60 * 60;
+      finalTime = finalTime + (timeObj.inputHrs * hoursToMills);
+    }
+    if (timeObj.inputMin > 0) {
+      const minutesToMills = 1000 * 60;
+      finalTime = finalTime + (timeObj.inputMin * minutesToMills);
+    }
+    if (timeObj.inputSec > 0) {
+      const secondsToMills = 1000;
+      finalTime = finalTime + (timeObj.inputSec * secondsToMills);
+    }
+    return finalTime;
+  }
 
   startTimer = () => {
     this.setState({
       timerOn: true,
-      timerTime: this.state.timerTime,
+      // timerTime: this.state.timerTime,
       timerStart: this.state.timerTime
     });
+    console.log(this.state.timerStart);
     this.timer = setInterval(() => {
       const newTime = this.state.timerTime - 10;
       if (newTime >= 0) {
@@ -43,59 +73,33 @@ class Countdown extends Component {
     // }
   };
 
-  adjustTimer = input => {
-    const { timerTime, timerOn } = this.state;
-    const max = 216000000;
-
-    if (!timerOn) {
-      if (input === "incHours" && timerTime + 3600000 < max) {
-        this.setState({ timerTime: timerTime + 3600000 });
-      } else if (input === "decHours" && timerTime - 3600000 >= 0) {
-        this.setState({ timerTime: timerTime - 3600000 });
-      } else if (input === "incMinutes" && timerTime + 60000 < max) {
-        this.setState({ timerTime: timerTime + 60000 });
-      } else if (input === "decMinutes" && timerTime - 60000 >= 0) {
-        this.setState({ timerTime: timerTime - 60000 });
-      } else if (input === "incSeconds" && timerTime + 1000 < max) {
-        this.setState({ timerTime: timerTime + 1000 });
-      } else if (input === "decSeconds" && timerTime - 1000 >= 0) {
-        this.setState({ timerTime: timerTime - 1000 });
-      }
-    }
-  };
+  startForMaster() {
+    this.props.resetMasterCallback();
+    this.preStart();
+  }
 
   render() {
-    const { timerTime, timerStart, timerOn } = this.state;
+    let { timerTime, timerStart, timerOn } = this.state;
+
+    if (this.props.masterStart === true) {
+      this.startForMaster();
+    }
+    
     let seconds = ("0" + (Math.floor((timerTime / 1000) % 60) % 60)).slice(-2);
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
     return (
       <div className="Countdown">
+        <p>{JSON.stringify(this.state.pulledTime)}</p>
         <div className="Countdown-header">Countdown</div>
         <div className="Countdown-label">Hours : Minutes : Seconds</div>
-        <div className="Countdown-display">
-          <button onClick={() => this.adjustTimer("incHours")}>&#8679;</button>
-          <button onClick={() => this.adjustTimer("incMinutes")}>
-            &#8679;
-          </button>
-          <button onClick={() => this.adjustTimer("incSeconds")}>
-            &#8679;
-          </button>
-          <button onClick={() => this.adjustTimer("decHours")}>&#8681;</button>
-          <button onClick={() => this.adjustTimer("decMinutes")}>
-            &#8681;
-          </button>
-          <button onClick={() => this.adjustTimer("decSeconds")}>
-            &#8681;
-          </button>
-        </div>
         <div className="Countdown-time">
-          {this.state.inputHrs} : {this.state.inputMin} : {this.state.inputSec}
+          {hours} : {minutes} : {seconds}
         </div>
         {timerOn === false &&
           (timerStart === 0 || timerTime === timerStart) && (
-            <button onClick={this.startTimer}>Start</button>
+            <button onClick={this.preStart}>Start</button>
           )}
         {timerOn === true && timerTime >= 1000 && (
           <button onClick={this.stopTimer}>Stop</button>
