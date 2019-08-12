@@ -22,6 +22,7 @@ class Countdown extends Component {
     });
   }
 
+  // TODO: Verify that this is working correctly in the reducer and then remove from code.
   // convertTime(timeObj) {
   //   let finalTime = 0;
   //   if (timeObj.inputHrs > 0) {
@@ -46,7 +47,7 @@ class Countdown extends Component {
       // timerTime: this.state.timerTime,
       timerStart: this.state.timerTime
     });
-    console.log(this.state.timerStart);
+    
     this.timer = setInterval(() => {
       const newTime = this.state.timerTime - 10;
       if (newTime >= 0) {

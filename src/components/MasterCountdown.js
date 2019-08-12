@@ -33,6 +33,14 @@ class MasterCountdown extends Component {
         });
         this.createTimerInterval();        
     };
+
+    holdTimer = () => {
+        clearInterval(this.timer);
+        this.props.dispatch({
+            type: 'MASTER_TIMER_ON',
+            payload: true
+        });
+    };
     
     stopTimer = () => {
         clearInterval(this.timer);
@@ -61,6 +69,7 @@ class MasterCountdown extends Component {
         return (
             <div>
                 <button onClick={this.startTimer}>Start</button>
+                <button onClick={this.holdTimer}>Hold</button>
                 <button onClick={this.stopTimer}>Stop</button>
                 <button onClick={this.startTimer}>Resume</button>
                 <button onClick={this.resetTimer}>Reset</button>
