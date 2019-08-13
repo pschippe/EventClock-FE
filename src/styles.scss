@@ -1,3 +1,17 @@
+// @import "../layout/content-sidebar";
+// @import "../layout/sidebar-content";
+
+/*--------------------------------------------------------------
+## Mixins
+--------------------------------------------------------------*/
+@import "styles/mixins/mixins-breakpoint";
+@import "styles/mixins/mixins-main";
+
+/*--------------------------------------------------------------
+## Layout
+--------------------------------------------------------------*/
+@import "styles/layout/grid";
+
 .App {
   font-family: sans-serif;
   text-align: center;

@@ -7,16 +7,6 @@ import mapReduxStoreToProps from './redux/mapReduxStoreToProps';
 
 class App extends React.Component {
   state = {
-    // timers: [
-    //   {
-    //     id: "damnit",
-    //     time: 0
-    //   },
-    //   {
-    //     id: "damnit2",
-    //     time: 0
-    //   }
-    // ],
     indvTimer: 0,
     allTimers: 0,
     currentTime: 0,
@@ -65,15 +55,17 @@ class App extends React.Component {
       );
     });
     return (
-      <div className="App">
-        <div className="Timers">{rmClocks}</div>
-        <div className="App-title">
-          <TimerInput
-            startAll={this.startAll}
-          />
-          <MasterCountdown />
+        <div className="grid">
+          <div className="grid-col grid-col_4of12">
+            {rmClocks}
+          </div>
+          <div className="grid-col grid-col_8of12">
+            <TimerInput
+              startAll={this.startAll}
+            />
+            <MasterCountdown />
+          </div>
         </div>
-      </div>
     );
   }
 }

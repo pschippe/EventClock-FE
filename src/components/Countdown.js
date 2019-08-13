@@ -7,6 +7,7 @@ class Countdown extends Component {
     timerOn: false,
     timerStart: 0,
     timerTime: 0,
+    timerID: '',
     inputHrs: 0,
     inputMin: 0,
     inputSec: 0,
@@ -21,24 +22,6 @@ class Countdown extends Component {
       }, 2000);
     });
   }
-
-  // TODO: Verify that this is working correctly in the reducer and then remove from code.
-  // convertTime(timeObj) {
-  //   let finalTime = 0;
-  //   if (timeObj.inputHrs > 0) {
-  //     const hoursToMills = 1000 * 60 * 60;
-  //     finalTime = finalTime + (timeObj.inputHrs * hoursToMills);
-  //   }
-  //   if (timeObj.inputMin > 0) {
-  //     const minutesToMills = 1000 * 60;
-  //     finalTime = finalTime + (timeObj.inputMin * minutesToMills);
-  //   }
-  //   if (timeObj.inputSec > 0) {
-  //     const secondsToMills = 1000;
-  //     finalTime = finalTime + (timeObj.inputSec * secondsToMills);
-  //   }
-  //   return finalTime;
-  // }
 
   startTimer = () => {
     // TODO: Use npm install "axios" for ajax call to backend
@@ -93,26 +76,31 @@ class Countdown extends Component {
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
     return (
-      <div id="" className="Countdown">
-        <div className="Countdown-header">Countdown</div>
-        <div className="Countdown-label">Hours : Minutes : Seconds</div>
-        <div className="Countdown-time">
-          {hours} : {minutes} : {seconds}
+      <div id="" className="roomClock">
+        <div className="roomClock-hd">Countdown</div>
+        <div className="roomClock-bd">
+          <div className="timer">
+            <div className="timer-display">
+              {hours} : {minutes} : {seconds}
+            </div>
+            <div className="timer-control">
+              {timerOn === false &&
+                (timerStart === 0 || timerTime === timerStart) && (
+                  <button className="btn btn_start" onClick={this.preStart} disabled={disableButtons}>Start</button>
+                )}
+              {timerOn === true && timerTime >= 1000 && (
+                <button className="btn btn_stop" onClick={this.stopTimer} disabled={disableButtons}>Stop</button>
+              )}
+              {timerOn === false &&
+                (timerStart !== 0 && timerStart !== timerTime && timerTime !== 0) && (
+                  <button className="btn btn_start" onClick={this.startTimer} disabled={disableButtons}>Resume</button>
+                )}
+              {(timerOn === false || timerTime < 1000) && (
+                <button className="btn btn_reset" onClick={this.resetTimer} disabled={disableButtons}>Reset</button>
+              )}
+            </div>
+          </div>
         </div>
-        {timerOn === false &&
-          (timerStart === 0 || timerTime === timerStart) && (
-            <button onClick={this.preStart} disabled={disableButtons}>Start</button>
-          )}
-        {timerOn === true && timerTime >= 1000 && (
-          <button onClick={this.stopTimer} disabled={disableButtons}>Stop</button>
-        )}
-        {timerOn === false &&
-          (timerStart !== 0 && timerStart !== timerTime && timerTime !== 0) && (
-            <button onClick={this.startTimer} disabled={disableButtons}>Resume</button>
-          )}
-        {(timerOn === false || timerTime < 1000) && (
-          <button onClick={this.resetTimer} disabled={disableButtons}>Reset</button>
-        )}
       </div>
     );
   }

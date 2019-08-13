@@ -20,7 +20,7 @@ class MasterCountdown extends Component {
                 alert("Master Countdown Ended");
             }
         }, 10);
-    }
+    };
     
     startTimer = () => {
         this.props.dispatch({

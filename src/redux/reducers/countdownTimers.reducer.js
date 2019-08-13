@@ -1,10 +1,18 @@
 const defaultCounntdowns = [
     {
-        id: 'room01',
+        id: 'Auditorium',
         time: 0
     },
     {
-        id: 'room02',
+        id: 'BlackSea',
+        time: 0
+    },
+    {
+        id: 'Marathon',
+        time: 0
+    },
+    {
+        id: 'Tours',
         time: 0
     }
 ];
