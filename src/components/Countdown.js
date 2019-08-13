@@ -41,10 +41,9 @@ class Countdown extends Component {
   // }
 
   startTimer = () => {
-    // TODO: Use npm install "axios" library for ajax call to backend
+    // TODO: Use npm install "axios" for ajax call to backend
     this.setState({
       timerOn: true,
-      // timerTime: this.state.timerTime,
       timerStart: this.state.timerTime
     });
     
@@ -94,7 +93,7 @@ class Countdown extends Component {
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
     return (
-      <div className="Countdown">
+      <div id="" className="Countdown">
         <div className="Countdown-header">Countdown</div>
         <div className="Countdown-label">Hours : Minutes : Seconds</div>
         <div className="Countdown-time">

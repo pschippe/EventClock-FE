@@ -31,14 +31,21 @@ class MasterCountdown extends Component {
                 timerStart: this.props.store.currentTime.timerTime
             }
         });
-        this.createTimerInterval();        
+        // Controls timing delay for clock start
+        window.setTimeout(() => {
+            this.createTimerInterval();        
+        }, 2000);
     };
 
     holdTimer = () => {
         clearInterval(this.timer);
         this.props.dispatch({
-            type: 'MASTER_TIMER_ON',
-            payload: true
+            type: 'MASTER_TIMER_SET_ALL',
+            payload: {
+                timerOn: true,
+                timerCount: this.props.store.currentTime.timerTime,
+                timerStart: this.props.store.currentTime.timerTime   
+            }
         });
     };
     
