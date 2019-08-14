@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import mapReduxStoreToProps from '../redux/mapReduxStoreToProps';
+import Api from '../api';
 
 class MasterCountdown extends Component {
     createTimerInterval () {
@@ -31,6 +32,31 @@ class MasterCountdown extends Component {
                 timerStart: this.props.store.currentTime.timerTime
             }
         });
+        // Creates Promises for all clocks if different endpoints are needed
+        // Hope only one endpoint is needed
+        // First create empty array
+        const apiArray = [];
+        // Fill using a for loop
+        for (let clock of this.props.store.countdownTimers) {
+            const apiObj = {
+                ...this.props.store.currentTime,
+                id: clock.id,
+                status: 'start'
+            };
+            apiArray.push(Api.postTime(apiObj));
+        }
+        // Send promise for all
+        Promise.all(apiArray)
+            // Then is a response to make sure that it was successful to hit api
+            .then((response) => {
+                window.setTimeout(() => {
+                this.startTimer()
+                }, 2000);
+            })
+            // Catch is an error... its just an error
+            .catch((error) => {
+                console.log('Error on preStart for Countdown.js', error);
+            });
         // Controls timing delay for clock start
         window.setTimeout(() => {
             this.createTimerInterval();        

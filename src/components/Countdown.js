@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import mapReduxStoreToProps from '../redux/mapReduxStoreToProps';
+import Api from '../api';
 
 class Countdown extends Component {
   state = {
@@ -15,8 +16,25 @@ class Countdown extends Component {
 
   preStart = () => {
     this.setState({
-      timerTime: this.props.store.currentTime.timerTime
+      timerTime: this.props.store.currentTime.timerTime,
     }, () => {
+      // Setting up post for api call, needs to match endpoint titles and information
+      Api.postTime({
+        ...this.props.store.currentTime,
+        id: this.props.id,
+        status: 'start'
+      })
+      // Then is a response to make sure that it was successful to hit api
+      .then((response) => {
+        window.setTimeout(() => {
+          this.startTimer()
+        }, 2000);
+      })
+      // Catch is an error... its just an error
+      .catch((error) => {
+        console.log('Error on preStart for Countdown.js', error);
+      });
+      // Remove when endpoints are working
       window.setTimeout(() => {
         this.startTimer()
       }, 2000);
@@ -76,8 +94,8 @@ class Countdown extends Component {
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
     return (
-      <div id="" className="roomClock">
-        <div className="roomClock-hd">Countdown</div>
+      <div id={this.props.id} className="roomClock">
+        <div className="roomClock-hd">{this.props.id}</div>
         <div className="roomClock-bd">
           <div className="timer">
             <div className="timer-display">
