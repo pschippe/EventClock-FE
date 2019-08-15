@@ -55,17 +55,29 @@ class App extends React.Component {
       );
     });
     return (
-        <div className="grid">
-          <div className="grid-col grid-col_4of12">
-            {rmClocks}
-          </div>
-          <div className="grid-col grid-col_8of12">
-            <TimerInput
-              startAll={this.startAll}
-            />
-            <MasterCountdown />
+      <div className="appBody">
+        <div className="appBody-hd">
+          <h1 className="hdg hdg_max">ClockWerx</h1>
+          <h2 className="hdg hdg_3">Events clock timer control</h2>
+        </div>
+        <div className="appBody-bd appBody-bd_split">
+          <div className="grid">
+            <div className="grid-col grid-col_5of12">
+              <div className="clockList">
+                {rmClocks}
+              </div>
+            </div>
+            <div className="grid-col grid-col_7of12">
+              <div className="">
+                <TimerInput
+                  startAll={this.startAll}
+                />
+                <MasterCountdown />
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     );
   }
 }

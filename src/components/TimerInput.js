@@ -22,23 +22,23 @@ class TimerInput extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form">
         <input
           type="number"
           onChange={event => this.changeInputTime(event, "hours")}
-          className="field-item_hrs"
+          className="field-item field-item_hrs"
           required
         />
         <input
           type="number"
           onChange={event => this.changeInputTime(event, "minutes")}
-          className="field-item_min"
+          className="field-item field-item_min"
           required
         />
         <input
           type="number"
           onChange={event => this.changeInputTime(event, "seconds")}
-          className="field-item_sec"
+          className="field-item field-item_sec"
           required
         />
       </div>
