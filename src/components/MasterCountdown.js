@@ -101,11 +101,11 @@ class MasterCountdown extends Component {
     render (){
         return (
             <div>
-                <button onClick={this.startTimer}>Start</button>
-                <button onClick={this.holdTimer}>Hold</button>
-                <button onClick={this.stopTimer}>Stop</button>
-                <button onClick={this.startTimer}>Resume</button>
-                <button onClick={this.resetTimer}>Reset</button>
+                <button onClick={this.startTimer} class="btn btn_start mix-btn_lg"><span>Start</span></button>
+                <button onClick={this.holdTimer} class="btn btn_start mix-btn_lg"><span>Hold</span></button>
+                <button onClick={this.stopTimer} class="btn btn_start mix-btn_lg"><span>Stop</span></button>
+                <button onClick={this.startTimer} class="btn btn_start mix-btn_lg"><span>Resume</span></button>
+                <button onClick={this.resetTimer} class="btn btn_start mix-btn_lg"><span>Reset</span></button>
             </div>
         );
     }

@@ -1,9 +1,23 @@
 .btn {
     border-radius: 50%;
-    font-size: 0;
     height: 35px;
     margin: 5px;
     position: relative;
     width: 35px;
+    &>* {
+        font-size: 0;
+    }
     @include icomoon("play2");
+}
+
+.btn_start {
+    @include icomoon("play3");
+}
+
+.btn_stop {
+    @include icomoon("pause2");
+}
+
+.btn_reset {
+    @include icomoon("history");
 }

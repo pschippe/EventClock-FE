@@ -143,17 +143,17 @@ class Countdown extends Component {
             <div className="timer-control">
               {timerOn === false &&
                 (timerStart === 0 || timerTime === timerStart) && (
-                  <button className="btn btn_start" onClick={this.preStart} disabled={disableButtons}>Start</button>
+                  <button className="btn btn_start" onClick={this.preStart} disabled={disableButtons}><span>Start</span></button>
                 )}
               {timerOn === true && timerTime >= 1000 && (
-                <button className="btn btn_stop" onClick={this.stopTimer} disabled={disableButtons}>Stop</button>
+                <button className="btn btn_stop" onClick={this.stopTimer} disabled={disableButtons}><span>Stop</span></button>
               )}
               {timerOn === false &&
                 (timerStart !== 0 && timerStart !== timerTime && timerTime !== 0) && (
-                  <button className="btn btn_start" onClick={this.startTimer} disabled={disableButtons}>Resume</button>
+                  <button className="btn btn_start" onClick={this.startTimer} disabled={disableButtons}><span>Resume</span></button>
                 )}
               {(timerOn === false || timerTime < 1000) && (
-                <button className="btn btn_reset" onClick={this.resetTimer} disabled={disableButtons}>Reset</button>
+                <button className="btn btn_reset" onClick={this.resetTimer} disabled={disableButtons}><span>Reset</span></button>
               )}
             </div>
           </div>
