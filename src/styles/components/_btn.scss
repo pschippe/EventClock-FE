@@ -1,0 +1,9 @@
+.btn {
+    border-radius: 50%;
+    font-size: 0;
+    height: 35px;
+    margin: 5px;
+    position: relative;
+    width: 35px;
+    @include icomoon("play2");
+}

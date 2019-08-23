@@ -1,0 +1,10 @@
+.clockList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    & > * {
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+}
