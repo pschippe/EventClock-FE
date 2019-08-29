@@ -50,7 +50,7 @@ class MasterCountdown extends Component {
             // Then is a response to make sure that it was successful to hit api
             .then((response) => {
                 window.setTimeout(() => {
-                this.startTimer()
+                    this.startTimer()
                 }, 2000);
             })
             // Catch is an error... its just an error
@@ -77,7 +77,7 @@ class MasterCountdown extends Component {
     
     stopTimer = () => {
         clearInterval(this.timer);
-        this.props.dispatch({ 
+        this.props.dispatch({
             type: 'MASTER_TIMER_ON',
             payload: false
         });
@@ -101,11 +101,11 @@ class MasterCountdown extends Component {
     render (){
         return (
             <div>
-                <button onClick={this.startTimer} class="btn btn_start mix-btn_lg"><span>Start</span></button>
-                <button onClick={this.holdTimer} class="btn btn_start mix-btn_lg"><span>Hold</span></button>
-                <button onClick={this.stopTimer} class="btn btn_start mix-btn_lg"><span>Stop</span></button>
-                <button onClick={this.startTimer} class="btn btn_start mix-btn_lg"><span>Resume</span></button>
-                <button onClick={this.resetTimer} class="btn btn_start mix-btn_lg"><span>Reset</span></button>
+                <button onClick={this.startTimer} className="btn btn_start mix-btn_lg"><span>Start</span></button>
+                <button onClick={this.holdTimer} className="btn btn_hold mix-btn_lg"><span>Hold</span></button>
+                <button onClick={this.stopTimer} className="btn btn_stop mix-btn_lg"><span>Stop</span></button>
+                <button onClick={this.startTimer} className="btn btn_start mix-btn_lg"><span>Resume</span></button>
+                <button onClick={this.resetTimer} className="btn btn_reset mix-btn_lg"><span>Reset</span></button>
             </div>
         );
     }

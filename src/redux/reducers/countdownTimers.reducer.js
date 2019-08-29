@@ -1,17 +1,17 @@
 const defaultCounntdowns = [
     {
         id: 'Auditorium',
-        ip: '192.168.12.143',
+        ip: '192.168.12.140',
         time: 0,
     },
     {
         id: 'BlackSea',
-        ip: '192.168.12.143',
+        ip: '192.168.12.141',
         time: 0
     },
     {
         id: 'Marathon',
-        ip: '192.168.12.143',
+        ip: '192.168.12.142',
         time: 0
     },
     {
@@ -25,6 +25,7 @@ const defaultCounntdowns = [
 //      type: 'ADD_TIMER',
 //      payload: {
 //         id: 'room03',
+//         ip: '192.168.12.140',
 //         time: 0
 //      }
 // }

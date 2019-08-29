@@ -32,6 +32,7 @@ function addTimeToState(currState, timeKey, timeValue) {
     };
     newTimeState[timeKey] = timeDoubleDigit;
     newTimeState.timerTime = timeConverter(currState.timerTime, timeAsNumber, timeKey);
+    console.log(timeAsNumber, 'timeAsNumber');
     return newTimeState;
 }
 
@@ -40,8 +41,10 @@ function makeTimeDoubleDigit(timeStr) {
 
     if (timeStr.length < 2 && timeStr.length !== 0) {
         doubleDigit = `0${timeStr}`;
+    } else {
+        doubleDigit = `${timeStr}`;
     }
-
+    console.log(doubleDigit, 'doubleDigit');
     return doubleDigit;
 }
 
@@ -58,7 +61,7 @@ function timeConverter(baseTime, newTime, timeType) {
         conversion = 1000;
     }
     finalTime = finalTime + (newTime * conversion);
-
+    console.log(finalTime, 'finalTime');
     return finalTime;
 }
 

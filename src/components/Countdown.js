@@ -11,7 +11,7 @@ class Countdown extends Component {
     timerID: '',
     inputHrs: 0,
     inputMin: 0,
-    inputSec: 0,
+    inputSec: 0
   };
 
   preStart = () => {
@@ -29,6 +29,7 @@ class Countdown extends Component {
       .then((response) => {
         window.setTimeout(() => {
           this.startTimer()
+          
         }, 2000);
       })
       // Catch is an error... its just an error
@@ -38,6 +39,7 @@ class Countdown extends Component {
       // TODO: Remove when endpoints are working
       window.setTimeout(() => {
         this.startTimer()
+        
       }, 2000);
     });
   }
@@ -60,6 +62,7 @@ class Countdown extends Component {
         this.setState({ timerOn: false });
         alert("Countdown Ended");
       }
+      
     }, 10);
   };
 
@@ -95,6 +98,7 @@ class Countdown extends Component {
       Api.postTime({
         ...this.props.store.currentTime,
         id: this.props.id,
+        ip: this.props.ip,
         stop: 'false',
         pause: 'false',
       })
@@ -117,7 +121,6 @@ class Countdown extends Component {
   render() {
     let { timerTime, timerStart, timerOn } = this.state;
     let disableButtons = false;
-    let clockIP = this.props.ip;
     let clockID = this.props.id;
 
     if (this.props.store.masterTime.timerOn === true) {
@@ -131,7 +134,6 @@ class Countdown extends Component {
     let minutes = ("0" + Math.floor((timerTime / 60000) % 60)).slice(-2);
     let hours = ("0" + Math.floor((timerTime / 3600000) % 60)).slice(-2);
 
-    console.log(clockIP, 'testing IP');
     return (
       <div id={clockID} className="roomClock">
         <div className="roomClock-hd">{clockID}</div>

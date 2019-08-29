@@ -14,8 +14,12 @@
     @include icomoon("play3");
 }
 
-.btn_stop {
+.btn_hold {
     @include icomoon("pause2");
+}
+
+.btn_stop {
+    @include icomoon("stop2");
 }
 
 .btn_reset {

@@ -47,6 +47,7 @@ class App extends React.Component {
       return (
         <Countdown
           id={timers.id}
+          ip={timers.ip}
           masterStart={this.state.masterStart}
           resetMasterCallback={this.resetMaster}
           key={index}

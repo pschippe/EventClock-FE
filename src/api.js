@@ -7,37 +7,33 @@ class Api {
 
     // Create another method for Master if changes are too extensive or if new api call is needed
     postTime (postObj) {
-        return this.baseAxios.get({
-            url: `/timer`,
+        return this.baseAxios.get(`/timer`,{
             params: {
                 time: `${postObj.hours}:${postObj.minutes}:${postObj.seconds}`,
-                fulltime: postObj.timerTime,
-                id: postObj.id,
-                stop: false,
-                pause: false
-                // Send time to start
-                // Set stop: true or false
-                // set pause: true of false
+                fulltime : postObj.timerTime,
+                id : postObj.id,
+                stop : false,
+                pause : false
             }
         });
     }
     postPower (postObj) {
-        return this.baseAxios.get(`/powerBtn`, {
+        return this.baseAxios.post(`/powerBtn`, {
             on: postObj.power
         });
     }
     postBright (postObj) {
-        return this.baseAxios.get(`/dim`, {
+        return this.baseAxios.post(`/dim`, {
             bright: postObj.bright
         });
     }
     postSync (postObj) {
-        return this.baseAxios.get(`/sync`, {
+        return this.baseAxios.post(`/sync`, {
             sync: postObj.sync
         });
     }
     postMil (postObj) {
-        return this.baseAxios.get(`/milTime`, {
+        return this.baseAxios.post(`/milTime`, {
             mil: postObj.mil
         });
     }

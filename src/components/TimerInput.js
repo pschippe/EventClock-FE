@@ -18,6 +18,7 @@ class TimerInput extends Component {
       type: `CURRENT_TIME_${timeKey.toUpperCase()}`,
       payload: event.target.value,
     })
+    
   };
 
   render() {
@@ -27,18 +28,21 @@ class TimerInput extends Component {
           type="number"
           onChange={event => this.changeInputTime(event, "hours")}
           className="field-item field-item_hrs"
+          placeholder="00"
           required
         />
         <input
           type="number"
           onChange={event => this.changeInputTime(event, "minutes")}
           className="field-item field-item_min"
+          placeholder="00"
           required
         />
         <input
           type="number"
           onChange={event => this.changeInputTime(event, "seconds")}
           className="field-item field-item_sec"
+          placeholder="00"
           required
         />
       </div>
