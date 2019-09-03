@@ -44,7 +44,7 @@ function makeTimeDoubleDigit(timeStr) {
     } else {
         doubleDigit = `${timeStr}`;
     }
-    console.log(doubleDigit, 'doubleDigit');
+    
     return doubleDigit;
 }
 
@@ -61,7 +61,7 @@ function timeConverter(baseTime, newTime, timeType) {
         conversion = 1000;
     }
     finalTime = finalTime + (newTime * conversion);
-    console.log(finalTime, 'finalTime');
+    console.log(baseTime, 'baseTimeVar');
     return finalTime;
 }
 
