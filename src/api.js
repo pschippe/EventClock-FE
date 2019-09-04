@@ -3,12 +3,12 @@ import axios from 'axios';
 class Api {
     baseAxios = axios.create({
         // baseURL: 'http://192.168.12.140/clocksapp'
-        baseURL: 'http://192.168.12.140:3000/clockwerx/api/v1/'
+        baseURL: 'http://'
     });
 
     // Create another method for Master if changes are too extensive or if new api call is needed
     postTime (postObj) {
-        return this.baseAxios.get(`/go`,{
+        return this.baseAxios.get(`${postObj.ip}:3000/clockwerx/api/v1/go`,{
             params: {
                 timer: `${postObj.hours}:${postObj.minutes}:${postObj.seconds}`,
                 fulltime : postObj.timerTime,

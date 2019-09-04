@@ -25,14 +25,14 @@ const currentTime = (state = defaultCurrentTime, action) => {
 }
 
 function addTimeToState(currState, timeKey, timeValue) {
-    const timeAsNumber = parseInt(timeValue);
+    console.log(currState, 'currState');
     const timeDoubleDigit = makeTimeDoubleDigit(timeValue);
     const newTimeState = {
         ...currState,
     };
     newTimeState[timeKey] = timeDoubleDigit;
-    newTimeState.timerTime = timeConverter(currState.timerTime, timeAsNumber, timeKey);
-    console.log(timeAsNumber, 'timeAsNumber');
+    newTimeState.timerTime = timeConverter(newTimeState);
+
     return newTimeState;
 }
 
@@ -48,8 +48,20 @@ function makeTimeDoubleDigit(timeStr) {
     return doubleDigit;
 }
 
-//TODO: Can remove baseTime from function
-function timeConverter(baseTime, newTime, timeType) {
+function timeConverter(baseTimeObj) {
+    const hoursTime = indvTimeConverter(baseTimeObj.hours, 'hours');
+    const minutesTime = indvTimeConverter(baseTimeObj.minutes, 'minutes');
+    const secondsTime = indvTimeConverter(baseTimeObj.seconds, 'seconds');
+    let finalTime = hoursTime + minutesTime + secondsTime;
+
+    return finalTime;
+}
+
+function indvTimeConverter(newTime, timeType) {
+    if (newTime.length == 0) {
+        return 0;
+    }
+    let newTimeAsNumber = parseInt(newTime);
     let finalTime = 0;
     let conversion = 1;
 
@@ -60,8 +72,8 @@ function timeConverter(baseTime, newTime, timeType) {
     } else if (timeType === 'seconds') {
         conversion = 1000;
     }
-    finalTime = finalTime + (newTime * conversion);
-    console.log(baseTime, 'baseTimeVar');
+    finalTime = finalTime + (newTimeAsNumber * conversion);
+
     return finalTime;
 }
 
